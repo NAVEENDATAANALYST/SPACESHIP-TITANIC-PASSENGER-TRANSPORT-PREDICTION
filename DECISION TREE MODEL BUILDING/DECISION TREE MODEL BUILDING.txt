@@ -1,0 +1,20 @@
+#DECISION TREE MODEL BUILDING
+
+#LOADING THE REQUIRED PACKAGES
+library(rpart)
+library(rpart.plot)
+
+train <- df
+test <- df1
+
+dt_model <- rpart(Transported~Age+RoomService+FoodCourt+ShoppingMall+Spa+VRDeck,data=train,method="anova")
+
+rpart.plot(dt_model)
+
+prediction <- predict(dt_model,test)
+
+head(prediction,20)
+
+
+transported <- data.frame(PassengerId=test$PassengerId,Transported=ifelse(prediction>0.5,"False","True"))
+transported

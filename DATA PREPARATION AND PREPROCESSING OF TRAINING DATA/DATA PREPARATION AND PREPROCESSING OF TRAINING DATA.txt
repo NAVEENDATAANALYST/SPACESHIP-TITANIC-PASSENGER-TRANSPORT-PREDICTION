@@ -1,0 +1,37 @@
+#DATA PREPARATION AND PREPROCESSING OF TRAINING DATA
+
+df <- read.csv('train (1).csv')
+head(df)
+
+dim(df)
+
+summary(df)
+
+str(df)
+
+#CHECKING FOR ANY MISSING VALUES IN THE DATA
+sum(is.na(df))
+
+colSums(is.na(df))
+
+#CLEANING THE DATA
+df$HomePlanet[is.na(df$HomePlanet)] <- na.omit(df$HomePlanet)
+df$CryoSleep[is.na(df$CryoSleep)] <- na.omit(df$CryoSleep)
+df$Cabin[is.na(df$Cabin)] <- na.omit(df$Cabin)
+df$Destination[is.na(df$Destination)] <- na.omit(df$Destination)
+df$VIP[is.na(df$VIP)] <- na.omit(df$VIP)
+df$Name[is.na(df$Name)] <- na.omit(df$Name)
+
+df$Age[is.na(df$Age)] <- median(df$Age,na.rm=TRUE)
+df$RoomService[is.na(df$RoomService)] <- median(df$RoomService,na.rm=TRUE)
+df$FoodCourt[is.na(df$FoodCourt)] <- median(df$FoodCourt,na.rm=TRUE)
+df$ShoppingMall[is.na(df$ShoppingMall)] <- median(df$ShoppingMall,na.rm=TRUE)
+df$Spa[is.na(df$Spa)] <- median(df$Spa,na.rm=TRUE)
+df$VRDeck[is.na(df$VRDeck)] <- median(df$VRDeck,na.rm=TRUE)
+
+
+#ENCODING THE CATEGORICAL VARIABLES
+df$CryoSleep <- as.factor(df$CryoSleep)
+df$Transported <- as.factor(df$Transported)
+
+df$VIP <- as.factor(df$VIP)

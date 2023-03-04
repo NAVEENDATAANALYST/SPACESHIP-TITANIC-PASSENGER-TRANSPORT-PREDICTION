@@ -1,0 +1,30 @@
+#DATA PREPARATION AND PREPROCESSING OF TESTING DATA
+
+df1 <- read.csv('test (1).csv')
+head(df1)
+
+dim(df1)
+
+summary(df1)
+
+str(df1)
+
+#CHECKING FOR ANY MISSING VALUES IN THE DATA
+sum(is.na(df1))
+
+colSums(is.na(df1))
+
+#CLEANING THE DATA
+df1$HomePlanet[is.na(df1$HomePlanet)] <- na.omit(df1$HomePlanet)
+df1$CryoSleep[is.na(df1$CryoSleep)] <- na.omit(df1$CryoSleep)
+df1$Cabin[is.na(df1$Cabin)] <- na.omit(df1$Cabin)
+df1$Destination[is.na(df1$Destination)] <- na.omit(df1$Destination)
+df1$VIP[is.na(df1$VIP)] <- na.omit(df1$VIP)
+df1$Name[is.na(df1$Name)] <- na.omit(df1$Name)
+
+df1$Age[is.na(df1$Age)] <- median(df1$Age,na.rm=TRUE)
+df1$RoomService[is.na(df1$RoomService)] <- median(df1$RoomService,na.rm=TRUE)
+df1$FoodCourt[is.na(df1$FoodCourt)] <- median(df1$FoodCourt,na.rm=TRUE)
+df1$ShoppingMall[is.na(df1$ShoppingMall)] <- median(df1$ShoppingMall,na.rm=TRUE)
+df1$Spa[is.na(df1$Spa)] <- median(df1$Spa,na.rm=TRUE)
+df1$VRDeck[is.na(df1$VRDeck)] <- median(df1$VRDeck,na.rm=TRUE)
